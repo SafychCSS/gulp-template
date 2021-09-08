@@ -1,0 +1,71 @@
+.header {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+
+    width: 100%;
+
+    background: rgba(255, 255, 255, 0.5);
+    -webkit-backdrop-filter: blur(100px);
+    backdrop-filter: blur(100px);
+
+    @media (max-width: 768px) {
+        margin-bottom: 100px;
+    }
+
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 32px;
+        padding-bottom: 32px;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+    }
+}
+
+.header {
+    font-size: 30px;
+}
+
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    .header {
+        background-color: rgba(255, 255, 255, .96);
+    }
+}
+
+.logo {
+
+    &__pic {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__text {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 20px;
+
+        font-size: 20px;
+    }
+}
+
+.action-reg {
+    position: relative;
+    padding-top: 412px;
+    padding-bottom: 412px;
+
+    text-align: center;
+
+    @media (max-width: 768px) {
+        text-align: left;
+    }
+}
+
+.user-action {
+    &__reg {
+        margin-left: 18px;
+    }
+}
