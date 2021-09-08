@@ -214,7 +214,7 @@ const serve = () => {
     })
 }
 
-const watch = () => {
+const watchFile = () => {
     watch('dev/static/sass/**/*.+(sass|scss)', series(stylesDev))
     watch('dev/**/*.html', series(html))
     watch('dev/static/js/*.js', series(scriptDev))
@@ -224,7 +224,7 @@ const watch = () => {
 exports.default = series(
     clean,
     parallel(stylesDev, scriptDev, html, fonts, imagesDev),
-    parallel(watch, serve)
+    parallel(watchFile, serve)
 );
 exports.build = series(clean, parallel(stylesBuild, scriptBuild, html, fonts, imagesBuild));
 
