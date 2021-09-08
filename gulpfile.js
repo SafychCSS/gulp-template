@@ -104,5 +104,11 @@ const htmlDev = () => {
         }))
 }
 
-exports.default = series(clean, parallel(stylesDev, scriptDev, htmlDev));
-exports.build = series(clean, parallel(stylesBuild, scriptBuild));
+// fonts
+const fonts = () => {
+    return src('dev/static/fonts/**/*')
+      .pipe(dest('build/static/fonts/'))
+}
+
+exports.default = series(clean, parallel(stylesDev, scriptDev, htmlDev, fonts));
+exports.build = series(clean, parallel(stylesBuild, scriptBuild, fonts));
