@@ -1,4 +1,4 @@
-const {src, dest, series, parallel} = require('gulp');
+const {src, dest, series, parallel, watch} = require('gulp');
 const plumber = require('gulp-plumber');
 const sourcemaps = require('gulp-sourcemaps');
 const notify = require('gulp-notify');
@@ -206,7 +206,26 @@ const createSpriteSvgBlack = () => {
 		.pipe(dest('build/static/img'));
 }
 
-exports.default = series(clean, parallel(stylesDev, scriptDev, html, fonts, imagesDev));
+const serve = () => {
+    browserSync.init({
+        server: {
+            baseDir: "./build"
+        }
+    })
+}
+
+const watch = () => {
+    watch('dev/static/sass/**/*.+(sass|scss)', series(stylesDev))
+    watch('dev/**/*.html', series(html))
+    watch('dev/static/js/*.js', series(scriptDev))
+    watch('dev/static/img/**/*', series(imagesDev))
+}
+
+exports.default = series(
+    clean,
+    parallel(stylesDev, scriptDev, html, fonts, imagesDev),
+    parallel(watch, serve)
+);
 exports.build = series(clean, parallel(stylesBuild, scriptBuild, html, fonts, imagesBuild));
 
 exports.spritepng = createSpritePng;
