@@ -120,7 +120,11 @@ const fonts = () => {
 
 // images
 const imagesDev = () => {
-    return src('dev/static/img/**/*.{gif,png,jpg,svg}')
+    return src([
+        'dev/static/img/**/*.{gif,png,jpg,svg}',
+        '!dev/static/img/icon-png/*.png',
+        '!dev/static/img/svg/*.svg'
+    ])
         .pipe(dest('build/static/img/'));
 }
 
