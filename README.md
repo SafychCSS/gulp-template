@@ -1,4 +1,4 @@
-# gulp-template
+# gulp template without pug
 
 ## Build Setup
 
